@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutomatizaWeb1.Models;
+using AutomatizaWeb1.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace AutomatizaWeb1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<UsuarioDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>(); 
             services.AddMvc();
         }
 
